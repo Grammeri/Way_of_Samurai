@@ -70,6 +70,9 @@ export const updateNewPostText = (newText:string) => {
     rerenderEntireTree(state);
 }
 //testing for commit
+//testing for commit
+//testing for commit
+//testing for commit
 rerenderEntireTree(state);
 
 export default state;
