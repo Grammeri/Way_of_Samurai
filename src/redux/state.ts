@@ -1,4 +1,3 @@
-import {rerenderEntireTree} from "../render";
 
 export type DialogsPageType = {
     dialogs: { id: number, name: string}[],
@@ -20,6 +19,10 @@ export type AppStateType = {
 
 export type AddPostProps = {
     addPost:(message: string)=>void
+}
+
+let rerenderEntireTree = () => {
+    console.log("state changed")
 }
 
 let state: AppStateType = {
@@ -51,6 +54,7 @@ let state: AppStateType = {
 }
 //@ts-ignore
 window.state = state;
+
 //Anything can be instead of message
 export const addPost = () => {
     //Create an object in a separate variable
@@ -62,17 +66,20 @@ export const addPost = () => {
     };
     state.profilePage.posts.push(newPost);
     state.profilePage.newPostText = "";
-    rerenderEntireTree(state);
+    rerenderEntireTree();
 }
 
 export const updateNewPostText = (newText:string) => {
     state.profilePage.newPostText = newText;
-    rerenderEntireTree(state);
+    rerenderEntireTree();
 }
-//testing for commit
-//testing for commit
-//testing for commit
-//testing for commit
-rerenderEntireTree(state);
+
+export const subscribe = (observer:()=>void) => {
+    rerenderEntireTree = observer
+}
+
+rerenderEntireTree();
 
 export default state;
+
+// store - OOP

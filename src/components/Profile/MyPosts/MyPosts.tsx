@@ -21,8 +21,9 @@ function MyPosts(props: MyPostsPropsType) {
     const addPost = () => {
         if (newPostElement.current) {
             props.addPost(newPostElement.current.value);
-            newPostElement.current.value = "";
-        }
+          /*  transferred to State*/
+            /*newPostElement.current.value = "";*/
+               }
         /* props.updateNewPostText("");*/
     }
 
@@ -68,5 +69,6 @@ export default MyPosts;
         }*/
 /*   {alert(newPostElement.current && newPostElement.current.value)}*/
 /* props.addPost(newPostElement?.current?.value)*/
-/* if(newPostElement.current){*/
-/* props.addPost(newPostElement.current.value)*/
+
+/*if(newPostElement.current){
+ props.addPost(newPostElement.current.value)*/
