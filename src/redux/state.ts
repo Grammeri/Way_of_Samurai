@@ -1,9 +1,3 @@
-
-export type DialogsPageType = {
-    dialogs: { id: number, name: string}[],
-    messages: {id: number, message: string}[]
-}
-
 export type PostType = {id: number, message: string, likesCount: number}
 
 export type ProfilePageType = {
@@ -21,11 +15,23 @@ export type AddPostProps = {
     addPost:(message: string)=>void
 }
 
-let rerenderEntireTree = () => {
-    console.log("state changed")
+export type DialogsPageType = {
+    dialogs: { id: number, name: string}[],
+    messages: {id: number, message: string}[]
 }
 
-let state: AppStateType = {
+export type StoreType = {
+    _state: AppStateType
+    updateNewPostText: (newText: string) => void
+    addPost: () => void
+    _callSubscriber: () => void
+    subscribe: (observer: () => void) => void
+    //не протипизировал как AppStateType
+    getState: ()=> AppStateType
+}
+
+let store: StoreType = {
+    _state: {
     profilePage:{
         posts: [
             {id: 1, message: "Hi, how are you?", likesCount:12},
@@ -51,35 +57,36 @@ let state: AppStateType = {
             {id: 5, message: "Yo"},
         ]
     }
+},
+    getState(){
+        return this._state
+    },
+    _callSubscriber () {
+        console.log("state changed")
+    },
+    addPost() {
+        const newPost: PostType = {
+            id: 5,
+            message: this._state.profilePage.newPostText,
+            likesCount: 0
+        };
+        this._state.profilePage.posts.push(newPost);
+        this._state.profilePage.newPostText = "";
+        this._callSubscriber();
+    },
+    updateNewPostText (newText:string) {
+        this._state.profilePage.newPostText = newText;
+        this._callSubscriber();
+    },
+    subscribe (observer) {
+        this._callSubscriber = observer
+    },
 }
+
+/*callSubscriber();*/
+
+export default store;
 //@ts-ignore
-window.state = state;
-
-//Anything can be instead of message
-export const addPost = () => {
-    //Create an object in a separate variable
-    const newPost: PostType = {
-        id:5,
-        //we take message from the parameters
-        message: state.profilePage.newPostText,
-        likesCount:0
-    };
-    state.profilePage.posts.push(newPost);
-    state.profilePage.newPostText = "";
-    rerenderEntireTree();
-}
-
-export const updateNewPostText = (newText:string) => {
-    state.profilePage.newPostText = newText;
-    rerenderEntireTree();
-}
-
-export const subscribe = (observer:()=>void) => {
-    rerenderEntireTree = observer
-}
-
-rerenderEntireTree();
-
-export default state;
+window.store = store;
 
 // store - OOP

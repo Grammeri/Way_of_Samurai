@@ -8,16 +8,18 @@ import Profile from "./components/Profile/Profile";
 import News from "./components/News/News";
 import Music from "./components/Music/Music";
 import Settings from './components/Settings/Settings';
-import {AppStateType} from "./redux/state";
-import {addPost} from "./redux/state";
+import {AppStateType, StoreType} from "./redux/state";
+
 
 type AppPropsType = {
     state: AppStateType
     addPost: (message: string) => void
     updateNewPostText: (newText: string) => void
+    store: StoreType
 }
 
 function App(props: AppPropsType) {
+const state = props.store.getState()
 
     return (
         <BrowserRouter>
@@ -37,9 +39,9 @@ function App(props: AppPropsType) {
                            render={() =>
                                <Profile
                                    profilePage={props.state.profilePage}
-                                   addPost={props.addPost}
+                                   addPost={props.store.addPost.bind(props.store)}
                                    newPostText={props.state.profilePage.newPostText}
-                                   updateNewPostText={props.updateNewPostText}
+                                   updateNewPostText={props.store.updateNewPostText.bind(props.store)}
                                />
                            }/>
 
