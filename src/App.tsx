@@ -8,18 +8,25 @@ import Profile from "./components/Profile/Profile";
 import News from "./components/News/News";
 import Music from "./components/Music/Music";
 import Settings from './components/Settings/Settings';
-import {AppStateType, StoreType} from "./redux/state";
+import store, {
+    ActionsTypes,
+    AddPostActionType,
+    AppStateType,
+    StoreType,
+    UpdateNewPostTextActonType
+} from "./redux/state";
 
 
-type AppPropsType = {
+export type AppPropsType = {
     state: AppStateType
-    addPost: (message: string) => void
-    updateNewPostText: (newText: string) => void
-    store: StoreType
+    // addPost: (message: string) => void
+    // updateNewPostText: (newText: string) => void
+    // store: StoreType
+    dispatch:(action:ActionsTypes)=>void
 }
 
 function App(props: AppPropsType) {
-const state = props.store.getState()
+// const state = props.store.getState()
 
     return (
         <BrowserRouter>
@@ -39,9 +46,17 @@ const state = props.store.getState()
                            render={() =>
                                <Profile
                                    profilePage={props.state.profilePage}
-                                   addPost={props.store.addPost.bind(props.store)}
-                                   newPostText={props.state.profilePage.newPostText}
-                                   updateNewPostText={props.store.updateNewPostText.bind(props.store)}
+                                   dispatch={props.dispatch}
+                                   //addPost={props.state.dialogsPage.}
+
+
+                                   /*updateNewPostText={props.store.updateNewPostText.bind(props.store)}*/
+
+                                   /*dispatch={props.store.addPost.bind(props.store)}
+                                   newPostText={props.state.profilePage.newPostText}*/
+
+                                /*   dispatch={props.store.dispatch.bind(store)}*/
+
                                />
                            }/>
 

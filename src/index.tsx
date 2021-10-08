@@ -10,15 +10,15 @@ const rerenderEntireTree = () => {
     ReactDOM.render(
         <BrowserRouter>
             <App state={store.getState()}
-                 addPost={store.addPost.bind(store)}
-                 updateNewPostText={store.updateNewPostText.bind(store)}
-                 //не включил атрибут store
-                  store={store}
+                 dispatch={store.dispatch.bind(store)}
+
+                /*store={store}*/
             />
         </BrowserRouter>,
         document.getElementById('root'));
 }
 
+/*rerenderEntireTree(store.getState());*/
 rerenderEntireTree();
 
 store.subscribe(rerenderEntireTree)
