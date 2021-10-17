@@ -8,12 +8,12 @@ import Profile from "./components/Profile/Profile";
 import News from "./components/News/News";
 import Music from "./components/Music/Music";
 import Settings from './components/Settings/Settings';
-import store, {
+import {
     ActionsTypes,
-    AddPostActionType,
+  /*  AddPostActionType,*/
     AppStateType,
     StoreType,
-    UpdateNewPostTextActonType
+/*    UpdateNewPostTextActonType*/
 } from "./redux/state";
 
 
@@ -23,6 +23,7 @@ export type AppPropsType = {
     // updateNewPostText: (newText: string) => void
     // store: StoreType
     dispatch:(action:ActionsTypes)=>void
+    /*store:StoreType*/
 }
 
 function App(props: AppPropsType) {
@@ -34,10 +35,15 @@ function App(props: AppPropsType) {
                 <Header/>
                 <Navbar/>
                 <div className={"app-wrapper-content"}>
+                   {/* Route - компонента, следящая за URL. path - это props,  render={() =>
+                               <Dialogs
+                                   dialogsPage={props.state.dialogsPage} - это callBack.
+  в зависимости от path происходит отрисовка*/}
                     <Route path="/dialogs"
                            render={() =>
                                <Dialogs
                                    dialogsPage={props.state.dialogsPage}
+                                   dispatch={props.dispatch}
                                />
                            }/>
 
@@ -47,17 +53,7 @@ function App(props: AppPropsType) {
                                <Profile
                                    profilePage={props.state.profilePage}
                                    dispatch={props.dispatch}
-                                   //addPost={props.state.dialogsPage.}
-
-
-                                   /*updateNewPostText={props.store.updateNewPostText.bind(props.store)}*/
-
-                                   /*dispatch={props.store.addPost.bind(props.store)}
-                                   newPostText={props.state.profilePage.newPostText}*/
-
-                                /*   dispatch={props.store.dispatch.bind(store)}*/
-
-                               />
+                                                               />
                            }/>
 
                     {/*                    <Route path="/news" component={News}/>

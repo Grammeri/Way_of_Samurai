@@ -1,4 +1,61 @@
-import React from "react";
+import React, {ChangeEvent} from "react";
+import classes from "./Dialogs.module.css";
+import DialogItem from "./DialogItem/DialogItem";
+import Message from "./Message/Message";
+import {ActionsTypes, DialogsPageType, SendMessageCreator, UpdateNewMessageBodyCreator} from "../../redux/state";
+
+
+type DialogsPropsType = {
+    dialogsPage: DialogsPageType
+    dispatch: (action: ActionsTypes) => void
+}
+
+function Dialogs(props: DialogsPropsType) {
+    /*Нужное состояние мы передаем через пропс, поэтому стор тут не нужен*/
+    /*let sate = props.store.getState().dialogsPage;*/
+
+    let dialogElements = props.dialogsPage.dialogs.map(d => <DialogItem name={d.name} id={d.id}/>);
+    let messageElements = props.dialogsPage.messages.map((m) => <Message message={m.message}/>);
+    let newMessageBody = props.dialogsPage.newMessageBody; //Этот newMessageBody будет отображаться внутри value (34)
+    //Выносим логику кнопки в отдельную функцию
+
+    const onSendMessageClick = () => {
+        props.dispatch(SendMessageCreator())
+    }
+
+    const onNewMessageChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
+        let body = e.target.value
+        props.dispatch(UpdateNewMessageBodyCreator(body))
+    }
+    return (
+        <div className={classes.dialogs}>
+            <div className={classes.dialogsItems}>
+                {dialogElements}
+            </div>
+
+            <div className={classes.messages}>
+                <div>{messageElements}</div>
+                <div>
+
+                    {/* //Значения в textarea должны приходить из props*/}
+                    <div><textarea value={newMessageBody}
+                                   placeholder={"Enter your message"}
+                                   onChange={onNewMessageChange}
+                    ></textarea></div>
+                    <div>
+                        <button onClick={onSendMessageClick}>Send
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    )
+}
+
+export default Dialogs;
+
+
+/*import React from "react";
 import classes from "./Dialogs.module.css";
 import DialogItem from "./DialogItem/DialogItem";
 import Message from "./Message/Message";
@@ -9,25 +66,8 @@ type DialogsPropsType = {
 }
 function Dialogs(props: DialogsPropsType) {
 
-/*    let dialogs = [
-        {id: 1, name: "Dimych"},
-        {id: 2, name: "Andrey"},
-        {id: 3, name: "Sveta"},
-        {id: 4, name: "Sasha"},
-        {id: 5, name: "Viktor"},
-        {id: 6, name: "Valera"}
-    ]
-
-    let messages = [
-        {id: 1, message: "Hi"},
-        {id: 2, message: "How are you!"},
-        {id: 3, message: "Yo"},
-        {id: 4, message: "Yo"},
-        {id: 5, message: "Yo"},
-    ]*/
-
-let dialogElements = props.dialogsPage.dialogs.map(d  => <DialogItem name={d.name} id={d.id}/>);
-let messageElements = props.dialogsPage.messages.map((m) => <Message message={m.message}/>);
+    let dialogElements = props.dialogsPage.dialogs.map(d  => <DialogItem name={d.name} id={d.id}/>);
+    let messageElements = props.dialogsPage.messages.map((m) => <Message message={m.message}/>);
 
     return (
         <div className={classes.dialogs}>
@@ -36,22 +76,18 @@ let messageElements = props.dialogsPage.messages.map((m) => <Message message={m.
                 {dialogElements}
 
 
-                {/*<DialogItem name={dialogsData[0].name} id={dialogsData[0].id}/>
-                <DialogItem name={dialogsData[1].name} id={dialogsData[1].id}/>
-                <DialogItem name={dialogsData[2].name} id={dialogsData[2].id}/>*/}
 
             </div>
 
             <div className={classes.messages}>
                 {messageElements}
-                {/*<Message message={messagesData[0].message}/>
-                <Message message={messagesData[1].message}/>*/}
+
             </div>
         </div>
     )
 }
 
-export default Dialogs;
+export default Dialogs;*/
 
 
 

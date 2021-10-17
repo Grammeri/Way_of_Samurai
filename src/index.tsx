@@ -1,16 +1,17 @@
 import reportWebVitals from './reportWebVitals';
-import store from "./redux/state";
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import {BrowserRouter} from "react-router-dom";
+import {store} from "./redux/state";
 
 const rerenderEntireTree = () => {
     ReactDOM.render(
         <BrowserRouter>
             <App state={store.getState()}
                  dispatch={store.dispatch.bind(store)}
+                 /*store={store}*/
 
                 /*store={store}*/
             />
@@ -19,7 +20,8 @@ const rerenderEntireTree = () => {
 }
 
 /*rerenderEntireTree(store.getState());*/
-rerenderEntireTree();
+rerenderEntireTree(); //Вызываем функцию const rerenderEntireTree = () => {
+//к ней приходит state
 
 store.subscribe(rerenderEntireTree)
 
