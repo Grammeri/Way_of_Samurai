@@ -9,12 +9,12 @@ import News from "./components/News/News";
 import Music from "./components/Music/Music";
 import Settings from './components/Settings/Settings';
 import {
-    ActionsTypes,
   /*  AddPostActionType,*/
     AppStateType,
     StoreType,
 /*    UpdateNewPostTextActonType*/
 } from "./redux/state";
+import {ActionsTypes} from "./redux/dialogs-reducer";
 
 
 export type AppPropsType = {
