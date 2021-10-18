@@ -24,7 +24,8 @@ export type StoreType = {
     _callSubscriber: () => void
     subscribe: (observer: () => void) => void
     getState: () => AppStateType
-    dispatch: (action: ActionsTypes) => void
+    dispatch: (action: ActionsTypes) => void //Когда придет action, мы раздадим нужные подчасти отдельным Reducers
+    //и собирем результат в новый оъект, который и будет результатом нашего action
 }
 
 export type AddPostProps = {
@@ -75,8 +76,8 @@ export let store: StoreType = {
     },
 
     dispatch(action) {
-        this._state.profilePage = profileReducer(this._state, action).profilePage
-        this._state.dialogsPage = dialogsReducer(this._state, action).dialogsPage
+        this._state.profilePage = profileReducer(this._state.profilePage, action)
+        this._state.dialogsPage = dialogsReducer(this._state.dialogsPage, action)
         this._callSubscriber();
            }
 }

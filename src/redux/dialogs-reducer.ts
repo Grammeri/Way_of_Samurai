@@ -1,27 +1,20 @@
-import {SendMessageCreator, UpdateNewPostTextAC} from "./profile-reducer";
-import {AppStateType} from "./state";
+import {ActionsTypes} from "./profile-reducer";
+import {AppStateType, DialogsPageType} from "./state";
 
 export type AddPostProps = {
     addPost: (message: string) => void
 }
 
-export type ActionsTypes =
-    ReturnType<typeof AddPostAC> |
-    ReturnType<typeof UpdateNewPostTextAC> |
-    ReturnType<typeof UpdateNewMessageBodyCreator> |
-    ReturnType<typeof SendMessageCreator>
-type SendMessageCreatorType = ReturnType<typeof SendMessageCreator>
-
-
-const dialogsReducer = (state: AppStateType, action: ActionsTypes) => {
+const dialogsReducer = (state: DialogsPageType, action: ActionsTypes) => {
     switch (action.type) {
         case "UPDATE-NEW-MESSAGE-BODY":
-            state.dialogsPage.newMessageBody = action.body
+            state.newMessageBody = action.body //у Димыча нет dialogsPage
             return state;
+
         case "SEND-MESSAGE":
-            let body = state.dialogsPage.newMessageBody;
-            state.dialogsPage.newMessageBody = ""
-            state.dialogsPage.messages.push({id: 6, message: body});
+            let body = state.newMessageBody; //у Димыча нет dialogsPage
+            state.newMessageBody = ""; //у Димыча нет dialogsPage
+            state.messages.push({id: 6, message: body}); //у Димыча нет dialogsPage
             return state;
         default:
             return state;

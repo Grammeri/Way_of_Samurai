@@ -14,7 +14,7 @@ import {
     StoreType,
 /*    UpdateNewPostTextActonType*/
 } from "./redux/state";
-import {ActionsTypes} from "./redux/dialogs-reducer";
+import {ActionsTypes} from "./redux/profile-reducer";
 
 
 export type AppPropsType = {
