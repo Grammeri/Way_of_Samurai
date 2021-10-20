@@ -8,7 +8,7 @@ import {
     UpdateNewPostTextAC,
    /* UpdateNewPostTextActonType*/
 } from "../../../redux/profile-reducer";
-import {PostType} from "../../../redux/state";
+import {PostType} from "../../../redux/store";
 import {AddPostAC} from "../../../redux/dialogs-reducer";
 
 

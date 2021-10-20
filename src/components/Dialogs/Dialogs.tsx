@@ -3,7 +3,7 @@ import classes from "./Dialogs.module.css";
 import DialogItem from "./DialogItem/DialogItem";
 import Message from "./Message/Message";
 import {ActionsTypes, SendMessageCreator} from "../../redux/profile-reducer";
-import {DialogsPageType} from "../../redux/state";
+import {DialogsPageType} from "../../redux/store";
 import {UpdateNewMessageBodyCreator} from "../../redux/dialogs-reducer";
 
 

@@ -1,5 +1,5 @@
 import {AddPostAC, UpdateNewMessageBodyCreator} from "./dialogs-reducer";
-import {AppStateType, PostType, ProfilePageType} from "./state";
+import {AppStateType, PostType, ProfilePageType} from "./store";
 
 
 export type AddPostProps = {
@@ -13,8 +13,17 @@ export type ActionsTypes =
     ReturnType<typeof SendMessageCreator>
 type SendMessageCreatorType = ReturnType<typeof SendMessageCreator>
 
+let initialState = {
+    posts: [
+        {id: 1, message: "Hi, how are you?", likesCount: 12},
+        {id: 2, message: "It's my first post", likesCount: 11},
+        {id: 3, message: "My god", likesCount: 19},
+    ],
+        newPostText: "it-kamasutra"
+};
 
-const profileReducer = (state: ProfilePageType, action:ActionsTypes)=>{
+const profileReducer = (state:ProfilePageType = initialState, action:ActionsTypes)=>{
+    debugger;
     switch (action.type){
         case "ADD-POST":
             const newPost: PostType = {

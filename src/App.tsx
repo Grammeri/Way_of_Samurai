@@ -5,20 +5,12 @@ import Dialogs from "./components/Dialogs/Dialogs";
 import Header from "./components/Header/Header";
 import Navbar from "./components/Navbar/Navbar";
 import Profile from "./components/Profile/Profile";
-import News from "./components/News/News";
-import Music from "./components/Music/Music";
-import Settings from './components/Settings/Settings';
-import {
-  /*  AddPostActionType,*/
-    AppStateType,
-    StoreType,
-/*    UpdateNewPostTextActonType*/
-} from "./redux/state";
 import {ActionsTypes} from "./redux/profile-reducer";
+import {AppRootStateType} from "./redux/redux-store";
 
 
 export type AppPropsType = {
-    state: AppStateType
+    state: AppRootStateType
     // addPost: (message: string) => void
     // updateNewPostText: (newText: string) => void
     // store: StoreType
@@ -42,7 +34,7 @@ function App(props: AppPropsType) {
                     <Route path="/dialogs"
                            render={() =>
                                <Dialogs
-                                   dialogsPage={props.state.dialogsPage}
+                                   dialogsPage={props.state.dialogsReducer}//подчеркивало dialogsPage: удаляем, TS подсказывает
                                    dispatch={props.dispatch}
                                />
                            }/>
@@ -51,7 +43,7 @@ function App(props: AppPropsType) {
                     <Route path="/profile"
                            render={() =>
                                <Profile
-                                   profilePage={props.state.profilePage}
+                                   profilePage={props.state.profileReducer}//подчеркивало profilePage: удаляем, TS подсказывает
                                    dispatch={props.dispatch}
                                                                />
                            }/>

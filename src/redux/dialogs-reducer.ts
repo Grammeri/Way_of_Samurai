@@ -1,11 +1,30 @@
 import {ActionsTypes} from "./profile-reducer";
-import {AppStateType, DialogsPageType} from "./state";
+import {AppStateType, DialogsPageType} from "./store";
 
 export type AddPostProps = {
     addPost: (message: string) => void
 }
 
-const dialogsReducer = (state: DialogsPageType, action: ActionsTypes) => {
+let initialState = {
+    dialogs: [
+        {id: 1, name: "Dimych"},
+        {id: 2, name: "Andrey"},
+        {id: 3, name: "Sveta"},
+        {id: 4, name: "Sasha"},
+        {id: 5, name: "Viktor"},
+        {id: 6, name: "Valera"}
+    ],
+    messages: [
+        {id: 1, message: "Hi"},
+        {id: 2, message: "How are you!"},
+        {id: 3, message: "Yo"},
+        {id: 4, message: "Yo"},
+        {id: 5, message: "Yo"},
+    ],
+    newMessageBody: ""
+};
+
+const dialogsReducer = (state: DialogsPageType = initialState, action: ActionsTypes) => {
     switch (action.type) {
         case "UPDATE-NEW-MESSAGE-BODY":
             state.newMessageBody = action.body //у Димыча нет dialogsPage
