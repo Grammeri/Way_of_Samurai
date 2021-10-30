@@ -22,12 +22,12 @@ let initialState = {
         {id: 5, message: "Yo"},
     ],
     newMessageBody: ""
-};
+}
 
-const dialogsReducer = (state: DialogsPageType = initialState, action: ActionsTypes) => {
+const dialogsReducer = (state: DialogsPageType = initialState, action: ActionsTypes):DialogsPageType => {
     switch (action.type) {
         case "UPDATE-NEW-MESSAGE-BODY":
-            state.newMessageBody = action.body //у Димыча нет dialogsPage
+            state.newMessageBody = action.body //dialogsPage приходит под именем state
             return state;
 
         case "SEND-MESSAGE":
