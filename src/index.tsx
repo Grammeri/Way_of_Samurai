@@ -1,18 +1,18 @@
 import reportWebVitals from './reportWebVitals';
-import store from "./redux/redux-store";
+import store, {RootStateType} from "./redux/redux-store";
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import {BrowserRouter} from "react-router-dom";
 
-let rerenderEntireTree = (state:any) => {
-debugger
+let rerenderEntireTree = (state:RootStateType) => {
+
     ReactDOM.render(
         <BrowserRouter>
-            <App state={state}//так у Димыча 42 26:22
+            <App state={state} //state - объект
                  dispatch={store.dispatch.bind(store)}
-                 store={store}//Так у Димыча 42 26:22 + 44
+                 store={store}
             />
         </BrowserRouter>,
         document.getElementById('root'));
@@ -26,7 +26,7 @@ rerenderEntireTree(store.getState()); //Вызываем функцию const re
 store.subscribe(()=>{
    let state=store.getState();
     rerenderEntireTree(state);
-})//42 27:05 + 44
+})
 
 
 // If you want to start measuring performance in your app, pass a function

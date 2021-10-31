@@ -11,32 +11,38 @@ import {
 import {PostType} from "../../../redux/store";
 import {AddPostAC} from "../../../redux/dialogs-reducer";
 
-
 export type MyPostsPropsType = {
     posts: PostType[]
-    //addPost: (message: string) => void
+    addPost: () => void
     newPostText: string
-    //updateNewPostText: (newText: string) => void
-    dispatch: (action: ActionsTypes)=>void
+    updateNewPostText: (newText: string) => void
+    // dispatch: (action: ActionsTypes)=>void
 }
 
-
-
 function MyPosts(props: MyPostsPropsType) {
-    const postsElements =
+    let postsElements =
         props.posts.map(p => <Post message={p.message} likesCount={p.likesCount}/>);
 
     let newPostElement = React.createRef<HTMLTextAreaElement>();
 
-    const addPost = () => {
-            props.dispatch(AddPostAC());
+    const onAddPost = () => {
+           props.addPost() //Corrections TS
+
+        // if(newPostElement.current){
+        //     props.addPost(newPostElement.current.value)
+        // }
+
+           /* props.dispatch(AddPostAC());*/
     }
 
 
     let onPostChange = () => {
         let newPostText = newPostElement.current?.value
         if (newPostText) {
-            props.dispatch(UpdateNewPostTextAC(newPostText));
+            props.updateNewPostText(newPostText);
+           //У Димыча
+/*            let newPostText = newPostElement.current?.value
+            props.UpdateNewPostText(newPostText)*/
         }
     }
 
@@ -51,7 +57,9 @@ function MyPosts(props: MyPostsPropsType) {
                         onChange={onPostChange}
                     />
                 </div>
-                <button onClick={addPost}>Add post</button>
+                <div>
+                    <button onClick={onAddPost}>Add post</button>
+                </div>
             </div>
             <div className={classes.posts}>
                 {postsElements}
