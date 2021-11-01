@@ -14,7 +14,7 @@ export type ProfilePropsType = {
     //addPost: (message: string) => void
     //updateNewPostText: (newText: string) => void
     // dispatch:(action:ActionsTypes)=>void
-    store:StoreType
+    // store:StoreType
 }
 
 function Profile(props: ProfilePropsType) {
@@ -22,7 +22,9 @@ function Profile(props: ProfilePropsType) {
         return (
         <div>
             <ProfileInfo/>
-            <MyPostsContainer   store={props.store}
+            <MyPostsContainer
+
+                //store={props.store}
                               /*posts={props.profilePage.posts}
                                 newPostText={props.profilePage.newPostText}
                                 dispatch={props.dispatch}*/

@@ -5,6 +5,7 @@ import Message from "./Message/Message";
 import {ActionsTypes, SendMessageCreator} from "../../redux/profile-reducer";
 import {DialogsPageType} from "../../redux/store";
 import {UpdateNewMessageBodyCreator} from "../../redux/dialogs-reducer";
+import {StoreType} from "../../redux/redux-store";
 
 
 type DialogsPropsType = {
@@ -12,6 +13,7 @@ type DialogsPropsType = {
     // dispatch: (action: ActionsTypes) => void
     sendMessage:()=>void
     updateNewMessageBody:(body:string)=>void
+
 }
 
 function Dialogs(props: DialogsPropsType) {
