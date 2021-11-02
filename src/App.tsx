@@ -21,8 +21,7 @@ export type AppPropsType = {
     // updateNewPostText: (newText: string) => void
     store: StoreType
    dispatch:(action:ActionsTypes)=>void
-
-}
+ }
 
 function App() { //не передаст
 // const state = props.store.getState()
@@ -41,7 +40,10 @@ function App() { //не передаст
                                <DialogsContainer
                                   /* dialogsPage={props.state.dialogsPage}
                                    dispatch={props.dispatch}*/
-                               /*store={props.store}*/ /> }/>
+                               /*store={props.store}*/
+
+
+                               /> }/>
 
 
                     <Route path="/profile"

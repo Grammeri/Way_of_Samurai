@@ -10,14 +10,15 @@ import {
 } from "../../../redux/profile-reducer";
 import {PostType} from "../../../redux/store";
 import {AddPostAC} from "../../../redux/dialogs-reducer";
+import {MyPostsPropsType} from "./MyPostsContainer";
 
-export type MyPostsPropsType = {
+/*export type MyPostsPropsType = {
     posts: PostType[]
     addPost: () => void
     newPostText: string
-    updateNewPostText: (newText: string) => void
+    updateNewPostText: (newText: string) => void*/
     // dispatch: (action: ActionsTypes)=>void
-}
+
 
 function MyPosts(props: MyPostsPropsType) {
     let postsElements =

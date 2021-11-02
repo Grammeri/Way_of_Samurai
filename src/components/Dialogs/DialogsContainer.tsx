@@ -1,42 +1,56 @@
 import React, {ChangeEvent} from "react";
-import classes from "./Dialogs.module.css";
-import DialogItem from "./DialogItem/DialogItem";
-import Message from "./Message/Message";
 import {ActionsTypes, SendMessageCreator} from "../../redux/profile-reducer";
-import {DialogsPageType} from "../../redux/store";
 import {UpdateNewMessageBodyCreator} from "../../redux/dialogs-reducer";
-import {RootStateType, StoreType} from "../../redux/redux-store";
 import Dialogs from "./Dialogs";
-import StoreContext from "../../StoreContext";
+import {connect} from "react-redux";
+import {RootStateType} from "../../redux/redux-store";
+import {Dispatch} from "redux";
+import {DialogsPageType, PostType} from "../../redux/store";
 
 
-type DialogsPropsType = {
-    // dialogsPage: DialogsPageType
-    // dispatch: (action: ActionsTypes) => void
-    // store: StoreType
-   }
 
-function DialogsContainer(props: DialogsPropsType) {
+/*type DialogsPropsType = {
+/!*    dialogsPage: DialogsPageType
+    dispatch: (action: ActionsTypes) => void
+    store: StoreType*!/
+/!*    sendMessage:()=>void
+    updateNewMessageBody:(body:string)=>void*!/
+   }*/
 
-    return <StoreContext.Consumer>
-        {  (store) =>{
-           /* let state = store.getState().dialogsPage;*/
-            // let state = props.store.dialogsPage;
-
-            const onSendMessageClick = () => {
-                store.dispatch(SendMessageCreator())
-            }
-
-            const onNewMessageChange = (body:string) => {
-                store.dispatch(UpdateNewMessageBodyCreator(body))
-            }
-        return  <Dialogs updateNewMessageBody={onNewMessageChange}
-                    sendMessage={onSendMessageClick}
-                    dialogsPage={store.getState().dialogsPage}/>
-        }
-        }
-    </StoreContext.Consumer>
+type MapSatePropsType = {
+    dialogsPage: DialogsPageType
 }
+type MapDispatchPropsType = {
+    updateNewPostText: (newText: string) => void,
+    sendMessage: (newText: string) => void,
+}
+      /*  sendMessage:()=>void
+}*/
+
+//Двумя функциями ниже настраиваем наш connect
+
+
+    let mapStateToProps = (state:RootStateType): MapSatePropsType=> {
+    return{
+dialogsPage:state.dialogsPage
+    }
+}
+
+let mapDispatchToProps = (dispatch:Dispatch): MapDispatchPropsType => {
+    return{
+        updateNewPostText: (newText:string)=>{
+            dispatch(SendMessageCreator())
+        },
+        sendMessage:(message:string)=>{
+            dispatch(UpdateNewMessageBodyCreator(message))
+        },
+
+    }
+}
+
+const DialogsContainer = connect(mapStateToProps,mapDispatchToProps)(Dialogs)
+//Говорим: законнекти к стору презентационную компоненту по этим правилам
+//Connect возвращает новую контейнерную компоненту
 
 export default DialogsContainer;
 

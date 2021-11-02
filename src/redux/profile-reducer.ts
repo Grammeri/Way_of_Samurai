@@ -22,7 +22,7 @@ let initialState = {
         newPostText: "it-kamasutra"
     }
 
-const profileReducer = (state: ProfilePageType = initialState, action:ActionsTypes)=>{
+const profileReducer = (state: ProfilePageType = initialState, action:ActionsTypes):ProfilePageType=>{
 
     switch (action.type){
         case "ADD-POST":
@@ -45,5 +45,6 @@ const profileReducer = (state: ProfilePageType = initialState, action:ActionsTyp
 
 export const UpdateNewPostTextAC = (newText: string) => ({type: "UPDATE-NEW-POST-TEXT", newText: newText}) as const
 export const SendMessageCreator = () => ({type: "SEND-MESSAGE"}) as const
+
 
 export default profileReducer;

@@ -11,8 +11,8 @@ import {StoreType} from "../../redux/redux-store";
 type DialogsPropsType = {
     dialogsPage: DialogsPageType
     // dispatch: (action: ActionsTypes) => void
-    sendMessage:()=>void
-    updateNewMessageBody:(body:string)=>void
+    sendMessage:(newText:string)=>void
+    updateNewPostText:(body:string)=>void
 
 }
 
@@ -26,12 +26,12 @@ function Dialogs(props: DialogsPropsType) {
     //Выносим логику кнопки в отдельную функцию
 
     const onSendMessageClick = () => {
-        props.sendMessage()
+        props.sendMessage(newMessageBody) // не включил newMessageBody
     }
 
     const onNewMessageChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
         let body = e.target.value
-        props.updateNewMessageBody(body);
+        props.updateNewPostText(body);
        /* props.dispatch(UpdateNewMessageBodyCreator(body))*/
     }
     return (
