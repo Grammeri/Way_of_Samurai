@@ -20,8 +20,8 @@ function Dialogs(props: DialogsPropsType) {
 
     let state = props.dialogsPage;
 
-    let dialogElements = props.dialogsPage.dialogs.map(d => <DialogItem name={d.name} id={d.id}/>);// У Димыча state в начале, не props
-    let messageElements = props.dialogsPage.messages.map((m) => <Message message={m.message}/>);
+    let dialogElements = props.dialogsPage.dialogs.map(d => <DialogItem name={d.name} key={d.id} id={d.id}/>);// У Димыча state в начале, не props
+    let messageElements = props.dialogsPage.messages.map((m) => <Message message={m.message} key={m.id}/>);
     let newMessageBody = props.dialogsPage.newMessageBody; //Этот newMessageBody будет отображаться внутри value (34)
     //Выносим логику кнопки в отдельную функцию
 
@@ -30,6 +30,7 @@ function Dialogs(props: DialogsPropsType) {
     }
 
     const onNewMessageChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
+
         let body = e.target.value
         props.updateNewPostText(body);
        /* props.dispatch(UpdateNewMessageBodyCreator(body))*/

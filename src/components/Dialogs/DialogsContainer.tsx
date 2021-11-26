@@ -1,13 +1,11 @@
-import React, {ChangeEvent} from "react";
-import {ActionsTypes, SendMessageCreator} from "../../redux/profile-reducer";
+import React, {} from "react";
+import {SendMessageCreator} from "../../redux/profile-reducer";
 import {UpdateNewMessageBodyCreator} from "../../redux/dialogs-reducer";
 import Dialogs from "./Dialogs";
 import {connect} from "react-redux";
 import {RootStateType} from "../../redux/redux-store";
 import {Dispatch} from "redux";
-import {DialogsPageType, PostType} from "../../redux/store";
-
-
+import {DialogsPageType} from "../../redux/store";
 
 /*type DialogsPropsType = {
 /!*    dialogsPage: DialogsPageType
@@ -38,12 +36,12 @@ dialogsPage:state.dialogsPage
 
 let mapDispatchToProps = (dispatch:Dispatch): MapDispatchPropsType => {
     return{
-        updateNewPostText: (newText:string)=>{
+        updateNewPostText: (message:string)=>{
+            dispatch(UpdateNewMessageBodyCreator(message))//We dispatch action provided by AC
+        },
+        sendMessage:(newText:string)=>{
             dispatch(SendMessageCreator())
-        },
-        sendMessage:(message:string)=>{
-            dispatch(UpdateNewMessageBodyCreator(message))
-        },
+        }
 
     }
 }

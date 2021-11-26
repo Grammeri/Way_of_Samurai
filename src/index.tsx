@@ -8,7 +8,7 @@ import {BrowserRouter} from "react-router-dom";
 import {Provider} from "react-redux";
 
 
-let rerenderEntireTree = (state:RootStateType) => {
+
 
     ReactDOM.render(
         <BrowserRouter>
@@ -17,7 +17,7 @@ let rerenderEntireTree = (state:RootStateType) => {
             </Provider>
         </BrowserRouter>,
         document.getElementById('root'));
-}
+
 
 export type PostType = {
     id:number,
@@ -36,14 +36,14 @@ export type MessageType = {
 }
 
 /*rerenderEntireTree(store.getState());*/
-rerenderEntireTree(store.getState()); //Вызываем функцию const rerenderEntireTree = () => {
+/*rerenderEntireTree(store.getState());*/ //Вызываем функцию const rerenderEntireTree = () => {
 //к ней приходит state
 
 
-store.subscribe(()=>{
+/*store.subscribe(()=>{
    let state=store.getState();
     rerenderEntireTree(state);
-})
+})*/
 
 
 // If you want to start measuring performance in your app, pass a function

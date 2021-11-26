@@ -14,7 +14,6 @@ import {connect} from "react-redux";
 import Dialogs from "../../Dialogs/Dialogs";
 import {Dispatch} from "redux";
 
-
 /*
 export type MyPostsPropsType = {
     // posts: PostType[]

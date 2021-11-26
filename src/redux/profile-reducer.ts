@@ -22,22 +22,31 @@ let initialState = {
         newPostText: "it-kamasutra"
     }
 
-const profileReducer = (state: ProfilePageType = initialState, action:ActionsTypes):ProfilePageType=>{
+const profileReducer = (state: ProfilePageType = initialState, action:ActionsTypes):ProfilePageType=> {
 
-    switch (action.type){
+    switch (action.type) {
         case "ADD-POST":
             const newPost: PostType = {
                 id: 5,
                 message: state.newPostText,
                 likesCount: 0
             };
-            state.posts.push(newPost);//profilePage приходит под именем state
-            state.newPostText = "";//profilePage приходит под именем state
+            return  {
+                ...state,
+                posts : [...state.posts, newPost],
+                newPostText : ""
+            }
+
             return state;
 
         case "UPDATE-NEW-POST-TEXT":
-            state.newPostText = action.newText;//profilePage приходит под именем state
+            return {
+                ...state,
+                newPostText : action.newText
+            }
+
             return state;
+
         default:
             return state;
     }

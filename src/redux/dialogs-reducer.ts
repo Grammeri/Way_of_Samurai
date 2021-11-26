@@ -25,16 +25,26 @@ let initialState = {
 }
 
 const dialogsReducer = (state: DialogsPageType = initialState, action: ActionsTypes):DialogsPageType => {
+
+/*    let stateCopy = {...state}
+    stateCopy.messages = [...state.messages]*/
+
+
     switch (action.type) {
         case "UPDATE-NEW-MESSAGE-BODY":
-            state.newMessageBody = action.body //dialogsPage приходит под именем state
-            return state;
+            return {
+                ...state,
+                newMessageBody: action.body
+            }
 
         case "SEND-MESSAGE":
-            let body = state.newMessageBody; //у Димыча нет dialogsPage
-            state.newMessageBody = ""; //у Димыча нет dialogsPage
-            state.messages.push({id: 6, message: body}); //у Димыча нет dialogsPage
-            return state;
+            let body = state.newMessageBody;
+            return {
+                ...state,
+                newMessageBody : "",
+                messages:[...state.messages,{id: 6, message: body} ]
+            }
+
         default:
             return state;
     }

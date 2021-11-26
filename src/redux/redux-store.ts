@@ -8,6 +8,10 @@ let rootReducer = combineReducers({
 }) //этот объект надо воспринимать как стейт
 
 let store = createStore(rootReducer);
+
+// @ts-ignore
+window.store = store;
+
 export type StoreType = typeof store
 
 export type RootStateType = ReturnType<typeof rootReducer>
