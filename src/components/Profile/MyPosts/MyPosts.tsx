@@ -1,15 +1,6 @@
-import React, {Props} from 'react';
+import React from "react";
 import classes from "./MyPosts.module.css";
 import Post from './Post/Post';
-import {
-    ActionsTypes,
- /*   AddPostActionType,*/
-
-    UpdateNewPostTextAC,
-   /* UpdateNewPostTextActonType*/
-} from "../../../redux/profile-reducer";
-import {PostType} from "../../../redux/store";
-import {AddPostAC} from "../../../redux/dialogs-reducer";
 import {MyPostsPropsType} from "./MyPostsContainer";
 
 /*export type MyPostsPropsType = {

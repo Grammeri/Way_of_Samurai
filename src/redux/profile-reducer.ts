@@ -1,6 +1,34 @@
 import {AddPostAC, UpdateNewMessageBodyCreator} from "./dialogs-reducer";
-import {AppStateType, PostType, ProfilePageType} from "./store";
+/*import {AppStateType, PostType, ProfilePageType} from "./store";*/
+import {followAC, setUsersAC, unfollowAC} from "./users-reducer";
 
+
+export type PostType = { id: number, message: string, likesCount: number }
+
+export type ProfilePageType = {
+    posts: PostType[]
+    newPostText: string
+}
+
+export type DialogsPageType = {
+    dialogs: { id: number, name: string }[],
+    messages: { id: number, message: string }[]
+    newMessageBody: string
+}
+
+export type AppStateType = {
+    profilePage: ProfilePageType
+    dialogsPage: DialogsPageType
+}
+
+export type StoreType = {
+    _state: AppStateType
+    _callSubscriber: () => void
+    subscribe: (observer: () => void) => void
+    getState: () => AppStateType
+    dispatch: (action: ActionsTypes) => void //Когда придет action, мы раздадим нужные подчасти отдельным Reducers
+    //и собирем результат в новый оъект, который и будет результатом нашего action
+}
 
 export type AddPostProps = {
     addPost: (message: string) => void
@@ -10,6 +38,9 @@ export type ActionsTypes = ReturnType<typeof AddPostAC>
     | ReturnType<typeof UpdateNewPostTextAC>
     | ReturnType<typeof UpdateNewMessageBodyCreator>
     | ReturnType<typeof SendMessageCreator>
+    | ReturnType<typeof followAC>
+    | ReturnType<typeof unfollowAC>
+    | ReturnType<typeof setUsersAC>
 
 type SendMessageCreatorType = ReturnType<typeof SendMessageCreator>
 

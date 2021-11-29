@@ -4,10 +4,6 @@ import MyPosts from './MyPosts/MyPosts';
 import ProfileInfo from './Profileinfo/Profileinfo';
 import MyPostsContainer from "./MyPosts/MyPostsContainer";
 
-import {ProfilePageType} from "../../redux/store";
-import {ActionsTypes} from "../../redux/profile-reducer";
-import {RootStateType, StoreType} from "../../redux/redux-store";
-
 
 export type ProfilePropsType = {
     // profilePage: ProfilePageType

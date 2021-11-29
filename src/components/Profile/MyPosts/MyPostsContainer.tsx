@@ -1,12 +1,12 @@
 import React from 'react';
 
 import {
-    ActionsTypes,
- /*   AddPostActionType,*/
+    ActionsTypes, PostType,
+    /*   AddPostActionType,*/
     UpdateNewPostTextAC,
-   /* UpdateNewPostTextActonType*/
+    /* UpdateNewPostTextActonType*/
 } from "../../../redux/profile-reducer";
-import {PostType} from "../../../redux/store";
+
 import {AddPostAC} from "../../../redux/dialogs-reducer";
 import MyPosts from "./MyPosts";
 import {RootStateType, StoreType} from "../../../redux/redux-store";

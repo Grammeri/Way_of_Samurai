@@ -1,5 +1,5 @@
-import {ActionsTypes} from "./profile-reducer";
-import {AppStateType, DialogsPageType} from "./store";
+import {ActionsTypes, DialogsPageType} from "./profile-reducer";
+
 
 export type AddPostProps = {
     addPost: (message: string) => void

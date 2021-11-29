@@ -1,11 +1,11 @@
 import React, {} from "react";
-import {SendMessageCreator} from "../../redux/profile-reducer";
+import {DialogsPageType, SendMessageCreator} from "../../redux/profile-reducer";
 import {UpdateNewMessageBodyCreator} from "../../redux/dialogs-reducer";
 import Dialogs from "./Dialogs";
 import {connect} from "react-redux";
 import {RootStateType} from "../../redux/redux-store";
 import {Dispatch} from "redux";
-import {DialogsPageType} from "../../redux/store";
+
 
 /*type DialogsPropsType = {
 /!*    dialogsPage: DialogsPageType
