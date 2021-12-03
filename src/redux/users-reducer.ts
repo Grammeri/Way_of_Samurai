@@ -6,16 +6,18 @@ export type UserType = {
     fullName:string
     status:string
     location: {city:string, country:string}
+    photoUrl: any
 }
 export type UsersType = {
     users:UserType[]
+
 }
 
 let initialState: UsersType = {
         users: [
-            /*{id: 1, followed: false, fullName: "Dmitry", status: "I am a boss", location: {city: "Minsk", country: "Belarus"}},
-            {id: 2, followed: false, fullName: "Sasha", status: "I am a boss too", location: {city: "Moscow", country: "Russia"}},
-            {id: 3, followed: false, fullName: "Andrew", status: "I am a boss too", location: {city: "Kiev", country: "Ukrain"}},*/
+            /*{id: 1, photoUrl: "https://www.meme-arsenal.com/memes/3fbc577bba972a33aed3262196e3608b.jpg", followed: false, fullName: "Dmitry", status: "I am a boss", location: {city: "Minsk", country: "Belarus"}},
+            {id: 2, photoUrl: "https://www.meme-arsenal.com/memes/3fbc577bba972a33aed3262196e3608b.jpg", followed: false, fullName: "Sasha", status: "I am a boss too", location: {city: "Moscow", country: "Russia"}},
+            {id: 3, photoUrl: "https://www.meme-arsenal.com/memes/3fbc577bba972a33aed3262196e3608b.jpg", followed: false, fullName: "Andrew", status: "I am a boss too", location: {city: "Kiev", country: "Ukrain"}},*/
         ],
 }
 
@@ -52,8 +54,8 @@ const usersReducer = (state: UsersType = initialState, action: ActionsTypes): Us
 }
 
 
-export const followAC = (userId:string) => ({type: "FOLLOW", userId}) as const
-export const unfollowAC = (userId:string) => ({type: "UNFOLLOW", userId}) as const
+export const followAC = (userId:number) => ({type: "FOLLOW", userId}) as const
+export const unfollowAC = (userId:number) => ({type: "UNFOLLOW", userId}) as const
 export const setUsersAC = (users:UserType[]) => ({type: "SET-USERS", users}) as const
 
 

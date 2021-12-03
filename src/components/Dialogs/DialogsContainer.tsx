@@ -15,10 +15,10 @@ import {Dispatch} from "redux";
     updateNewMessageBody:(body:string)=>void*!/
    }*/
 
-type MapSatePropsType = {
+export type MapSatePropsType = {
     dialogsPage: DialogsPageType
 }
-type MapDispatchPropsType = {
+export type MapDispatchPropsType = {
     updateNewPostText: (newText: string) => void,
     sendMessage: (newText: string) => void,
 }

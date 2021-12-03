@@ -3,12 +3,12 @@ import './App.css';
 import Header from "./components/Header/Header";
 import Navbar from "./components/Navbar/Navbar";
 import Profile from "./components/Profile/Profile";
-import {BrowserRouter, Route} from 'react-router-dom';
+import {Route} from 'react-router-dom';
 import DialogsContainer from "./components/Dialogs/DialogsContainer";
 
 import {ActionsTypes, AppStateType} from "./redux/profile-reducer";
-import {RootStateType, StoreType} from "./redux/redux-store";
-import Users from "./components/Users/Users";
+import {StoreType} from "./redux/redux-store";
+import UsersContainer from "./components/Users/UsersContainer";
 
 export type AppPropsType = {
     state: AppStateType
@@ -40,7 +40,7 @@ function App() { //не передаст
                            render={() => <Profile />}/>
 
                 <Route path = "/users"
-                       render={()=><Users/>}/>
+                       render={()=><UsersContainer/>}/>
 
             </div>
         </div>)
