@@ -7,7 +7,7 @@ let rootReducer = combineReducers({
     profilePage: profileReducer,
     dialogsPage:dialogsReducer,
     usersPage: usersReducer
-}) //этот объект надо воспринимать как стейт
+}) //this object should be understood as STATE
 
 let store = createStore(rootReducer);
 

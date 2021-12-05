@@ -3,10 +3,11 @@ import {ActionsTypes, SendMessageCreator} from "./profile-reducer";
 export type UserType = {
     id:number
     followed:boolean
-    fullName:string
+    name:string
     status:string
     location: {city:string, country:string}
     photoUrl: any
+    photos: any
 }
 export type UsersType = {
     users:UserType[]
@@ -45,7 +46,7 @@ const usersReducer = (state: UsersType = initialState, action: ActionsTypes): Us
                     return u;
                 })
             }
-        case "SET-USERS":{
+        case "SET-USERS":{ //our array is empty, we will need this case to set users from a Server
             return {...state,users: [...state.users,...action.users]}
             }
         default:
