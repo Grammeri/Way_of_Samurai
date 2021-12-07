@@ -1,31 +1,61 @@
 import React from "react";
-import { connect } from "react-redux";
+import {connect} from "react-redux";
 import {RootStateType} from "../../redux/redux-store";
 import {Dispatch} from "redux";
-import {MapDispatchPropsType, MapSatePropsType} from "../Dialogs/DialogsContainer";
-import {followAC, setUsersAC, unfollowAC, UsersType, UserType} from "../../redux/users-reducer";
+import {
+    followAC,
+    setCurrentPageAC,
+    setTotalUsersCountAC,
+    setUsersAC,
+    unfollowAC,
+    UserType
+} from "../../redux/users-reducer";
 import Users from "./Users";
 
+type MSTPType = {
+    users: UserType[]
+    pageSize: number
+    totalUsersCount: number
+    currentPage: number
+}
 
+type MDTPType = {
+    follow: (userId: number) => void
+    unfollow: (userId: number) => void
+    setUsers: (users: UserType[]) => void
+    setCurrentPage: (currentPage: number) => void
+    setTotalUsersCount: (totalUsersCount: number) => void
+}
 
-let mapStateToProps = (state: RootStateType) => {
+export type UsersContainerType = MDTPType & MSTPType
+
+let mapStateToProps = (state: RootStateType): MSTPType => {
     return {
-        users: state.usersPage.users
+        users: state.usersPage.users,
+        pageSize: state.usersPage.pageSize,
+        totalUsersCount: state.usersPage.totalUsersCount,
+        currentPage: state.usersPage.currentPage,
     }
 }
 
-let mapDispatchToProps = (dispatch: Dispatch) => {
+let mapDispatchToProps = (dispatch: Dispatch): MDTPType => {
     return {
-        follow: (userId:number) => {
+        follow: (userId: number) => {
             dispatch(followAC(userId))
         },
-        unfollow: (userId:number) => {
+        unfollow: (userId: number) => {
             dispatch(unfollowAC(userId))
         },
-        setUsers: (users:UserType[]) => {
+        setUsers: (users: UserType[]) => {
             dispatch(setUsersAC(users))
+        },
+        setCurrentPage: (pageNumber: number) => {
+            dispatch(setCurrentPageAC(pageNumber))
+        },
+        setTotalUsersCount: (totalCount: number) => {
+            dispatch(setTotalUsersCountAC(totalCount))
         }
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Users) //connect возвращает компоненту обертку UsersContainer
+export default connect(mapStateToProps, mapDispatchToProps)(Users)

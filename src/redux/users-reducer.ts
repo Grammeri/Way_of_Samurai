@@ -1,4 +1,4 @@
-import {ActionsTypes, SendMessageCreator} from "./profile-reducer";
+import {ActionsTypes} from "./profile-reducer";
 
 export type UserType = {
     id:number
@@ -14,15 +14,17 @@ export type UserType = {
 }
 export type UsersType = {
     users:UserType[]
+    pageSize: number
+    totalUsersCount: number
+    currentPage: number
 
 }
 
 let initialState: UsersType = {
-        users: [
-            /*{id: 1, photoUrl: "https://www.meme-arsenal.com/memes/3fbc577bba972a33aed3262196e3608b.jpg", followed: false, fullName: "Dmitry", status: "I am a boss", location: {city: "Minsk", country: "Belarus"}},
-            {id: 2, photoUrl: "https://www.meme-arsenal.com/memes/3fbc577bba972a33aed3262196e3608b.jpg", followed: false, fullName: "Sasha", status: "I am a boss too", location: {city: "Moscow", country: "Russia"}},
-            {id: 3, photoUrl: "https://www.meme-arsenal.com/memes/3fbc577bba972a33aed3262196e3608b.jpg", followed: false, fullName: "Andrew", status: "I am a boss too", location: {city: "Kiev", country: "Ukrain"}},*/
-        ],
+    users: [],
+    pageSize: 5,
+    totalUsersCount: 0,
+    currentPage: 2
 }
 
 
@@ -49,9 +51,15 @@ const usersReducer = (state: UsersType = initialState, action: ActionsTypes): Us
                     return u;
                 })
             }
-        case "SET-USERS":{ //our array is empty, we will need this case to set users from a Server
-            return {...state,users: [...state.users,...action.users]}
+        case "SET-USERS":{
+            return {...state,users: action.users}
             }
+        case "SET-CURRENT-PAGE":{
+            return {...state,currentPage : action.currentPage}
+        }
+        case "SET-TOTAL-USERS-COUNT":{
+            return {...state,totalUsersCount : action.count}
+        }
         default:
             return state;
     }
@@ -61,6 +69,10 @@ const usersReducer = (state: UsersType = initialState, action: ActionsTypes): Us
 export const followAC = (userId: number) => ({type: "FOLLOW", userId}) as const
 export const unfollowAC = (userId: number) => ({type: "UNFOLLOW", userId}) as const
 export const setUsersAC = (users: UserType[]) => ({type: "SET-USERS", users}) as const
+export const setCurrentPageAC = (currentPage:number) => ({type: "SET-CURRENT-PAGE", currentPage}) as const
+export const setTotalUsersCountAC = (totalUsersCount:number) => ({type: "SET-TOTAL-USERS-COUNT", count:totalUsersCount}) as const
+
+
 
 
 export default usersReducer;
