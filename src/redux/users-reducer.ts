@@ -6,8 +6,11 @@ export type UserType = {
     name:string
     status:string
     location: {city:string, country:string}
-    photoUrl: any
-    photos: any
+    photoUrl: string
+    photos: {
+        small: string
+        large: string
+    }
 }
 export type UsersType = {
     users:UserType[]
@@ -30,7 +33,7 @@ const usersReducer = (state: UsersType = initialState, action: ActionsTypes): Us
             return {
                 ...state,
                 users: state.users.map(u => {
-                    if (u.id === +action.userId) {
+                    if (u.id === action.userId) {
                         return {...u, followed: true}
                     }
                     return u;
@@ -40,7 +43,7 @@ const usersReducer = (state: UsersType = initialState, action: ActionsTypes): Us
             return {
                 ...state,
                 users: state.users.map(u => {
-                    if (u.id === +action.userId) {
+                    if (u.id === action.userId) {
                         return {...u, followed: false}
                     }
                     return u;
@@ -55,9 +58,9 @@ const usersReducer = (state: UsersType = initialState, action: ActionsTypes): Us
 }
 
 
-export const followAC = (userId:number) => ({type: "FOLLOW", userId}) as const
-export const unfollowAC = (userId:number) => ({type: "UNFOLLOW", userId}) as const
-export const setUsersAC = (users:UserType[]) => ({type: "SET-USERS", users}) as const
+export const followAC = (userId: number) => ({type: "FOLLOW", userId}) as const
+export const unfollowAC = (userId: number) => ({type: "UNFOLLOW", userId}) as const
+export const setUsersAC = (users: UserType[]) => ({type: "SET-USERS", users}) as const
 
 
 export default usersReducer;

@@ -6,6 +6,8 @@ import {MapDispatchPropsType, MapSatePropsType} from "../Dialogs/DialogsContaine
 import {followAC, setUsersAC, unfollowAC, UsersType, UserType} from "../../redux/users-reducer";
 import Users from "./Users";
 
+
+
 let mapStateToProps = (state: RootStateType) => {
     return {
         users: state.usersPage.users
