@@ -1,6 +1,13 @@
 import {AddPostAC, UpdateNewMessageBodyCreator} from "./dialogs-reducer";
 /*import {AppStateType, PostType, ProfilePageType} from "./store";*/
-import {followAC, setCurrentPageAC, setTotalUsersCountAC, setUsersAC, unfollowAC} from "./users-reducer";
+import {
+    followAC,
+    setCurrentPageAC,
+    setTotalUsersCountAC,
+    setUsersAC,
+    toggleIsFetchingAC,
+    unfollowAC
+} from "./users-reducer";
 
 
 export type PostType = { id: number, message: string, likesCount: number }
@@ -43,6 +50,7 @@ export type ActionsTypes = ReturnType<typeof AddPostAC>
     | ReturnType<typeof setUsersAC>
     | ReturnType<typeof setCurrentPageAC>
     | ReturnType<typeof setTotalUsersCountAC>
+    | ReturnType<typeof toggleIsFetchingAC>
 
 
 type SendMessageCreatorType = ReturnType<typeof SendMessageCreator>

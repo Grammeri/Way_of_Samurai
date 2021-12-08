@@ -11,6 +11,7 @@ type UsersType = {
     users: UserType[]
     unfollow: (userId:number) => void
     follow: (userId:number) => void
+    isFetching:boolean
 }
 
 let Users = (props:UsersType) => {
