@@ -17,14 +17,13 @@ export type UsersType = {
     pageSize: number
     totalUsersCount: number
     currentPage: number
-
 }
 
 let initialState: UsersType = {
     users: [],
     pageSize: 5,
     totalUsersCount: 0,
-    currentPage: 2
+    currentPage: 1
 }
 
 
