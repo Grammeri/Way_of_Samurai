@@ -1,18 +1,17 @@
 import React from 'react';
 
 import {
-    ActionsTypes, PostType,
+    ActionsTypes, AddPostAC, PostType,
     /*   AddPostActionType,*/
-    UpdateNewPostTextAC,
     /* UpdateNewPostTextActonType*/
 } from "../../../redux/profile-reducer";
 
-import {AddPostAC} from "../../../redux/dialogs-reducer";
 import MyPosts from "./MyPosts";
 import {RootStateType, StoreType} from "../../../redux/redux-store";
 import {connect} from "react-redux";
 import Dialogs from "../../Dialogs/Dialogs";
 import {Dispatch} from "redux";
+import {UpdateNewPostTextAC} from "../../../redux/dialogs-reducer";
 
 /*
 export type MyPostsPropsType = {

@@ -1,10 +1,5 @@
 import {ActionsTypes, DialogsPageType} from "./profile-reducer";
 
-
-export type AddPostProps = {
-    addPost: (message: string) => void
-}
-
 let initialState = {
     dialogs: [
         {id: 1, name: "Dimych"},
@@ -26,10 +21,6 @@ let initialState = {
 
 const dialogsReducer = (state: DialogsPageType = initialState, action: ActionsTypes):DialogsPageType => {
 
-/*    let stateCopy = {...state}
-    stateCopy.messages = [...state.messages]*/
-
-
     switch (action.type) {
         case "UPDATE-NEW-MESSAGE-BODY":
             return {
@@ -50,7 +41,8 @@ const dialogsReducer = (state: DialogsPageType = initialState, action: ActionsTy
     }
 }
 
-export const UpdateNewMessageBodyCreator = (body: string) => ({ type: "UPDATE-NEW-MESSAGE-BODY", body } as const)
-export const AddPostAC = () => ({type: "ADD-POST"} as const)
+export const UpdateNewPostTextAC = (newText: string) => ({type: "UPDATE-NEW-POST-TEXT", newText: newText}) as const
+export const SendMessageCreator = () => ({type: "SEND-MESSAGE"}) as const
+
 
 export default dialogsReducer;

@@ -1,13 +1,12 @@
 import React from "react";
 import {connect} from "react-redux";
 import {RootStateType} from "../../redux/redux-store";
-import {Dispatch} from "redux";
 import {
-    followAC,
-    setCurrentPageAC,
-    setTotalUsersCountAC,
-    setUsersAC, toggleIsFetchingAC,
-    unfollowAC,
+    follow,
+    setCurrentPage,
+    setTotalUsersCount,
+    setUsers, toggleIsFetching,
+    unfollow,
     UserType
 } from "../../redux/users-reducer";
 import axios from "axios";
@@ -15,7 +14,7 @@ import Users from "./Users";
 import Preloader from "../common/Preloader/Preloader"
 
 
-type MSTPType = {
+export type MSTPType = {
     users: UserType[]
     pageSize: number
     totalUsersCount: number
@@ -23,7 +22,7 @@ type MSTPType = {
     isFetching: boolean
 }
 
-type MDTPType = {
+export type MDTPType = {
     follow: (userId: number) => void
     unfollow: (userId: number) => void
     setUsers: (users: UserType[]) => void
@@ -85,27 +84,5 @@ let mapStateToProps = (state: RootStateType): MSTPType => {
     }
 }
 
-let mapDispatchToProps = (dispatch: Dispatch): MDTPType => {
-    return {
-        follow: (userId: number) => {
-            dispatch(followAC(userId))
-        },
-        unfollow: (userId: number) => {
-            dispatch(unfollowAC(userId))
-        },
-        setUsers: (users: UserType[]) => {
-            dispatch(setUsersAC(users))
-        },
-        setCurrentPage: (pageNumber: number) => {
-            dispatch(setCurrentPageAC(pageNumber))
-        },
-        setTotalUsersCount: (totalCount: number) => {
-            dispatch(setTotalUsersCountAC(totalCount))
-        },
-        toggleIsFetching:(isFetching:boolean) => {
-            dispatch(toggleIsFetchingAC(isFetching))
-        }
-    }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(UsersContainer)
+export default connect(mapStateToProps,
+    {follow,unfollow,setUsers,setCurrentPage,setTotalUsersCount,toggleIsFetching})(UsersContainer)

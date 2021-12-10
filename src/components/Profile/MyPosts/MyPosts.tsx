@@ -3,13 +3,6 @@ import classes from "./MyPosts.module.css";
 import Post from './Post/Post';
 import {MyPostsPropsType} from "./MyPostsContainer";
 
-/*export type MyPostsPropsType = {
-    posts: PostType[]
-    addPost: () => void
-    newPostText: string
-    updateNewPostText: (newText: string) => void*/
-    // dispatch: (action: ActionsTypes)=>void
-
 
 function MyPosts(props: MyPostsPropsType) {
     let postsElements =
@@ -18,13 +11,7 @@ function MyPosts(props: MyPostsPropsType) {
     let newPostElement = React.createRef<HTMLTextAreaElement>();
 
     const onAddPost = () => {
-           props.addPost() //Corrections TS
-
-        // if(newPostElement.current){
-        //     props.addPost(newPostElement.current.value)
-        // }
-
-           /* props.dispatch(AddPostAC());*/
+           props.addPost()
     }
 
 
@@ -32,9 +19,6 @@ function MyPosts(props: MyPostsPropsType) {
         let newPostText = newPostElement.current?.value
         if (newPostText) {
             props.updateNewPostText(newPostText);
-           //У Димыча
-/*            let newPostText = newPostElement.current?.value
-            props.UpdateNewPostText(newPostText)*/
         }
     }
 
