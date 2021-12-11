@@ -28,7 +28,7 @@ function App() {
                        render={() =>
                            <DialogsContainer/>}/>
 
-                    <Route path="/profile"
+                    <Route path="/profile/:userId?"
                            render={() => <ProfileContainer />}/>
 
                 <Route path = "/users"

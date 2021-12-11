@@ -13,7 +13,7 @@ function ProfileInfo(props:ProfileInfoPropsType) {
     if (!props.profile) {
         return <Preloader/>
     }
-debugger
+
     return (
         <div>
             <div>
@@ -23,12 +23,7 @@ debugger
             </div>
             <div className={classes.descriptionBlock}>
                 {props.profile.photos.large ? <img src={props.profile.photos.large}/> : null}
-                <div>{props.profile.userId}</div>
-                <div>{props.profile.fullName}</div>
                 <div>ava + description</div>
-                <div>{props.profile.lookingForAJobDescription}</div>
-                <div>{props.profile.aboutMe}</div>
-
 
 
             </div>
