@@ -1,5 +1,9 @@
 import {SendMessageCreator, UpdateNewPostTextAC} from "./dialogs-reducer";
 import {follow, setCurrentPage, setTotalUsersCount, setUsers, toggleIsFetching, unfollow} from "./users-reducer";
+import {setAuthUserData} from "./auth-reducer";
+
+
+
 
 export type PostType = { id: number, message: string, likesCount: number }
 
@@ -42,6 +46,9 @@ export type ActionsTypes = ReturnType<typeof AddPostAC>
     | ReturnType<typeof setTotalUsersCount>
     | ReturnType<typeof toggleIsFetching>
     | ReturnType<typeof setUserProfile>
+    | ReturnType<typeof setAuthUserData>
+
+
 
 
 /*type SendMessageCreatorType = ReturnType<typeof SendMessageCreator>*/
@@ -87,9 +94,9 @@ const profileReducer = (state: ProfilePageType = initialState, action:ActionsTyp
 }
 
 
-export const AddPostAC = () => ({type: "ADD-POST"} as const)
-export const setUserProfile = (profile:null) => ({type: "SET-USER-PROFILE", profile} as const)
-export const UpdateNewMessageBodyCreator = (body: string) => ({ type: "UPDATE-NEW-MESSAGE-BODY", body } as const)
+export const AddPostAC = () => ({type: "ADD-POST"})as const
+export const setUserProfile = (profile:null) => ({type: "SET-USER-PROFILE", profile})as const
+export const UpdateNewMessageBodyCreator = (body: string) => ({ type: "UPDATE-NEW-MESSAGE-BODY", body })as const
 
 
 export default profileReducer;
