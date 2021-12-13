@@ -1,5 +1,13 @@
 import {SendMessageCreator, UpdateNewPostTextAC} from "./dialogs-reducer";
-import {follow, setCurrentPage, setTotalUsersCount, setUsers, toggleIsFetching, unfollow} from "./users-reducer";
+import {
+    follow,
+    setCurrentPage,
+    setTotalUsersCount,
+    setUsers,
+    toggleFollowingProgress,
+    toggleIsFetching,
+    unfollow
+} from "./users-reducer";
 import {setAuthUserData} from "./auth-reducer";
 
 
@@ -47,6 +55,7 @@ export type ActionsTypes = ReturnType<typeof AddPostAC>
     | ReturnType<typeof toggleIsFetching>
     | ReturnType<typeof setUserProfile>
     | ReturnType<typeof setAuthUserData>
+    | ReturnType<typeof toggleFollowingProgress>
 
 
 
