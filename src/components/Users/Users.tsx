@@ -61,7 +61,6 @@ let Users = (props:UsersType) => {
                             }}>Unfollow</button>
                             : <button onClick={() => {
 
-
                                 axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${u.id}`, {}, {
                                     withCredentials:true,
                                     headers: {
