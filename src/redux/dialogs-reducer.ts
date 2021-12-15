@@ -1,4 +1,5 @@
-import {ActionsTypes, DialogsPageType} from "./profile-reducer";
+import {DialogsPageType} from "./profile-reducer";
+
 
 let initialState = {
     dialogs: [
@@ -19,7 +20,11 @@ let initialState = {
     newMessageBody: ""
 }
 
-const dialogsReducer = (state: DialogsPageType = initialState, action: ActionsTypes):DialogsPageType => {
+export type DialogsReducerActionsTypes =
+    | ReturnType<typeof SendMessageCreator>
+    | ReturnType<typeof UpdateNewMessageBodyCreator>
+
+const dialogsReducer = (state: DialogsPageType = initialState, action: DialogsReducerActionsTypes):DialogsPageType => {
 
     switch (action.type) {
         case "UPDATE-NEW-MESSAGE-BODY":
@@ -41,8 +46,9 @@ const dialogsReducer = (state: DialogsPageType = initialState, action: ActionsTy
     }
 }
 
-export const UpdateNewPostTextAC = (newText: string) => ({type: "UPDATE-NEW-POST-TEXT", newText: newText}) as const
-export const SendMessageCreator = () => ({type: "SEND-MESSAGE"}) as const
+
+export const SendMessageCreator = () => ({type: "SEND-MESSAGE"}as const)
+export const UpdateNewMessageBodyCreator = (body: string) => ({ type: "UPDATE-NEW-MESSAGE-BODY", body } as const)
 
 
 export default dialogsReducer;

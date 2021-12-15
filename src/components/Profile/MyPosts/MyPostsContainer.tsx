@@ -1,27 +1,9 @@
 import React from 'react';
-
-import {
-    ActionsTypes, AddPostAC, PostType,
-    /*   AddPostActionType,*/
-    /* UpdateNewPostTextActonType*/
-} from "../../../redux/profile-reducer";
-
+import {PostType,UpdateNewPostTextAC, AddPostAC} from "../../../redux/profile-reducer";
 import MyPosts from "./MyPosts";
-import {RootStateType, StoreType} from "../../../redux/redux-store";
+import {RootStateType} from "../../../redux/redux-store";
 import {connect} from "react-redux";
-import Dialogs from "../../Dialogs/Dialogs";
 import {Dispatch} from "redux";
-import {UpdateNewPostTextAC} from "../../../redux/dialogs-reducer";
-
-/*
-export type MyPostsPropsType = {
-    // posts: PostType[]
-    //addPost: (message: string) => void
-    // newPostText: string
-    //updateNewPostText: (newText: string) => void
-    // dispatch: (action: ActionsTypes)=>void
-    // store:StoreType
-}*/
 
 type MapSatePropsType = {
    posts:PostType[],

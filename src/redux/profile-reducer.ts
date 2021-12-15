@@ -1,18 +1,3 @@
-import {SendMessageCreator, UpdateNewPostTextAC} from "./dialogs-reducer";
-import {
-    follow,
-    setCurrentPage,
-    setTotalUsersCount,
-    setUsers,
-    toggleFollowingProgress,
-    toggleIsFetching,
-    unfollow
-} from "./users-reducer";
-import {setAuthUserData} from "./auth-reducer";
-
-
-
-
 export type PostType = { id: number, message: string, likesCount: number }
 
 export type ProfileType = {
@@ -43,24 +28,13 @@ export type AppStateType = {
     dialogsPage: DialogsPageType
 }
 
-export type ActionsTypes = ReturnType<typeof AddPostAC>
+export type ProfileReducerActionsTypes =
+    | ReturnType<typeof AddPostAC>
     | ReturnType<typeof UpdateNewPostTextAC>
-    | ReturnType<typeof UpdateNewMessageBodyCreator>
-    | ReturnType<typeof SendMessageCreator>
-    | ReturnType<typeof follow>
-    | ReturnType<typeof unfollow>
-    | ReturnType<typeof setUsers>
-    | ReturnType<typeof setCurrentPage>
-    | ReturnType<typeof setTotalUsersCount>
-    | ReturnType<typeof toggleIsFetching>
     | ReturnType<typeof setUserProfile>
-    | ReturnType<typeof setAuthUserData>
-    | ReturnType<typeof toggleFollowingProgress>
 
 
-
-
-/*type SendMessageCreatorType = ReturnType<typeof SendMessageCreator>*/
+/*type ProfileActionsType = ReturnType<typeof AddPostAC> | ReturnType<typeof setUserProfile> | ReturnType<typeof UpdateNewMessageBodyCreator>*/
 
 let initialState = {
     posts: [
@@ -72,8 +46,7 @@ let initialState = {
     profile: null
 }
 
-const profileReducer = (state: ProfilePageType = initialState, action:ActionsTypes):ProfilePageType=> {
-
+const profileReducer = (state: ProfilePageType = initialState, action:ProfileReducerActionsTypes):ProfilePageType=> {
     switch (action.type) {
         case "ADD-POST": {
             const newPost: PostType = {
@@ -103,9 +76,9 @@ const profileReducer = (state: ProfilePageType = initialState, action:ActionsTyp
 }
 
 
-export const AddPostAC = () => ({type: "ADD-POST"})as const
-export const setUserProfile = (profile:null) => ({type: "SET-USER-PROFILE", profile})as const
-export const UpdateNewMessageBodyCreator = (body: string) => ({ type: "UPDATE-NEW-MESSAGE-BODY", body })as const
+export const AddPostAC = () => ({type: "ADD-POST"} as const)
+export const setUserProfile = (profile:null) => ({type: "SET-USER-PROFILE", profile} as const)
+export const UpdateNewPostTextAC = (newText: string) => ({type: "UPDATE-NEW-POST-TEXT", newText: newText}as const)
 
 
 export default profileReducer;

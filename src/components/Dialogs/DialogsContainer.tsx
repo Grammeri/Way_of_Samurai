@@ -1,19 +1,10 @@
 import React, {} from "react";
-import {DialogsPageType, UpdateNewMessageBodyCreator} from "../../redux/profile-reducer";
+import {DialogsPageType} from "../../redux/profile-reducer";
 import Dialogs from "./Dialogs";
 import {connect} from "react-redux";
 import {RootStateType} from "../../redux/redux-store";
 import {Dispatch} from "redux";
-import {SendMessageCreator} from "../../redux/dialogs-reducer";
-
-
-/*type DialogsPropsType = {
-/!*    dialogsPage: DialogsPageType
-    dispatch: (action: ActionsTypes) => void
-    store: StoreType*!/
-/!*    sendMessage:()=>void
-    updateNewMessageBody:(body:string)=>void*!/
-   }*/
+import {SendMessageCreator, UpdateNewMessageBodyCreator} from "../../redux/dialogs-reducer";
 
 export type MapSatePropsType = {
     dialogsPage: DialogsPageType
@@ -22,11 +13,6 @@ export type MapDispatchPropsType = {
     updateNewPostText: (newText: string) => void,
     sendMessage: (newText: string) => void,
 }
-      /*  sendMessage:()=>void
-}*/
-
-//Двумя функциями ниже настраиваем наш connect
-
 
     let mapStateToProps = (state:RootStateType): MapSatePropsType=> {
     return{
@@ -47,8 +33,6 @@ let mapDispatchToProps = (dispatch:Dispatch): MapDispatchPropsType => {
 }
 
 const DialogsContainer = connect(mapStateToProps,mapDispatchToProps)(Dialogs)
-//Говорим: законнекти к стору презентационную компоненту по этим правилам
-//Connect возвращает новую контейнерную компоненту
 
 export default DialogsContainer;
 

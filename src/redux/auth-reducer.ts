@@ -1,11 +1,12 @@
-import {ActionsTypes} from "./profile-reducer";
-
 export type AuthType = {
     id:string | null
     email: string | null
     login: string | null
     isAuth:boolean
 }
+
+export type AuthReducerActionsTypes =
+    | ReturnType<typeof setAuthUserData>
 
 let initialState: AuthType = {
     id: null,
@@ -14,7 +15,7 @@ let initialState: AuthType = {
     isAuth:false
 }
 
-const authReducer = (state: AuthType = initialState, action: ActionsTypes): AuthType => {
+const authReducer = (state: AuthType = initialState, action: AuthReducerActionsTypes): AuthType => {
 
     switch (action.type) {
         case "SET-USER-DATA":
@@ -30,6 +31,6 @@ const authReducer = (state: AuthType = initialState, action: ActionsTypes): Auth
 }
 
 export const setAuthUserData = (userId: number, email:string, login:string) =>
-    ({type: "SET-USER-DATA", data:{userId, email, login}}) as const
+    ({type: "SET-USER-DATA", data:{userId, email, login}}as const)
 
 export default authReducer;
