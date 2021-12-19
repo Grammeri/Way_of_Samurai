@@ -1,3 +1,6 @@
+import {Dispatch} from "redux";
+import {usersAPI} from "../api/api";
+
 export type PostType = { id: number, message: string, likesCount: number }
 
 export type ProfileType = {
@@ -78,6 +81,13 @@ const profileReducer = (state: ProfilePageType = initialState, action:ProfileRed
 
 export const AddPostAC = () => ({type: "ADD-POST"} as const)
 export const setUserProfile = (profile:null) => ({type: "SET-USER-PROFILE", profile} as const)
+
+export const getUserProfile = (userId:number) => (dispatch:Dispatch) => {
+    usersAPI.getProfile(userId).then(response => {
+            dispatch(setUserProfile(response.data))
+        })
+}
+
 export const UpdateNewPostTextAC = (newText: string) => ({type: "UPDATE-NEW-POST-TEXT", newText: newText}as const)
 
 
