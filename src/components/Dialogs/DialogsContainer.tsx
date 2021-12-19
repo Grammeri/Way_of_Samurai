@@ -8,6 +8,7 @@ import {SendMessageCreator, UpdateNewMessageBodyCreator} from "../../redux/dialo
 
 export type MapSatePropsType = {
     dialogsPage: DialogsPageType
+    isAuth:boolean
 }
 export type MapDispatchPropsType = {
     updateNewPostText: (newText: string) => void,
@@ -16,7 +17,8 @@ export type MapDispatchPropsType = {
 
     let mapStateToProps = (state:RootStateType): MapSatePropsType=> {
     return{
-dialogsPage:state.dialogsPage
+dialogsPage:state.dialogsPage,
+        isAuth:state.auth.isAuth
     }
 }
 

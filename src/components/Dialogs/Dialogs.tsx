@@ -3,15 +3,13 @@ import classes from "./Dialogs.module.css";
 import DialogItem from "./DialogItem/DialogItem";
 import Message from "./Message/Message";
 import {DialogsPageType} from "../../redux/profile-reducer";
-
-
-
+import {Redirect} from "react-router-dom";
 
 type DialogsPropsType = {
     dialogsPage: DialogsPageType
-    // dispatch: (action: ActionsTypes) => void
     sendMessage:(newText:string)=>void
     updateNewPostText:(body:string)=>void
+    isAuth:boolean
 
 }
 
@@ -25,7 +23,7 @@ function Dialogs(props: DialogsPropsType) {
     //Выносим логику кнопки в отдельную функцию
 
     const onSendMessageClick = () => {
-        props.sendMessage(newMessageBody) // не включил newMessageBody
+        props.sendMessage(newMessageBody)
     }
 
     const onNewMessageChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
@@ -34,6 +32,9 @@ function Dialogs(props: DialogsPropsType) {
         props.updateNewPostText(body);
        /* props.dispatch(UpdateNewMessageBodyCreator(body))*/
     }
+
+    if (!props.isAuth) return <Redirect to={"/login"}/>
+
     return (
         <div className={classes.dialogs}>
             <div className={classes.dialogsItems}>
