@@ -10,7 +10,6 @@ type DialogsPropsType = {
     sendMessage:(newText:string)=>void
     updateNewPostText:(body:string)=>void
     isAuth:boolean
-
 }
 
 function Dialogs(props: DialogsPropsType) {
